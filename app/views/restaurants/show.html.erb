@@ -1,13 +1,25 @@
 <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://loremflickr.com/800/180/<%= @restaurant.category %>)">
 <%= @restaurant.name %>
 </div>
-<div class="container" class="d-flex">
-<p><%= @restaurant.address %></p>
-<p><%= @restaurant.phone_number %></p>
-<p><%= @restaurant.category.capitalize %></p>
 <div class="row">
   <%= link_to "Home", restaurants_path, class: "col-4 btn btn-info" %>
   <%= link_to "Edit", edit_restaurant_path(@restaurant), class: "col-4 btn btn-info" %>
   <%= link_to "DESTROY", restaurant_path(@restaurant), class: "col-4 btn btn-info", data: { turbo_method: :delete, turbo_confirm: "Remove #{@restaurant.name}?" } %>
 </div>
+<div class="container" class="d-flex">
+<p><%= @restaurant.address %></p>
+<p><%= @restaurant.phone_number %></p>
+<p><%= @restaurant.category.capitalize %></p>
+</div>_
+
+<div class="container">
+  <%= link_to "Submit a Review", new_restaurant_review_path(@restaurant), class: "btn btn-warning" %>
+  <ul>
+    <% @reviews.each do |review| %>
+      <li>
+        <p><%= review.rating %> - <%= review.content %></p>
+        <p><%= link_to "Delete", review_path(review), class: "btn btn-warning", data: { turbo_method: :delete, turbo_confirm: 'Destroy?'} %></p>
+      </li>
+    <% end %>
+  </ul>
 </div>

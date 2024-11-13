@@ -1,0 +1,6 @@
+<h1>Make a Review!</h1>
+  <%= simple_form_for [@restaurant, @review] do |f| %>
+    <%= f.input :rating, collection: Review::RATINGS_RANGE %>
+    <%= f.input :content %>
+    <%= f.submit %>
+  <% end %>
