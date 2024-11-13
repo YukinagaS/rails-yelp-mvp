@@ -1,0 +1,19 @@
+<div class="container-fluid d-flex align-items-between">
+  <h1>Middle Earth Cuisine</h1>
+  <%= link_to "+", new_restaurant_path, class: "btn btn-primary" %>
+</div>
+<div class="container">
+  <div class="cards">
+    <% @restaurants.each do |restaurant| %>
+      <div class="card-product">
+        <img src="https://loremflickr.com/120/120/<%= restaurant.category %>" />
+        <div class="card-product-infos">
+          <h2><%= restaurant.name %> (<%= restaurant.category.capitalize %>)</h2>
+          <p><%= restaurant.address %></p>
+          <p><%= restaurant.phone_number %></p>
+        </div>
+        <%= link_to "", restaurant_path(restaurant['id']), class: 'card-product-link' %>
+      </div>
+    <% end %>
+  </div>
+</div>
